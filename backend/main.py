@@ -21,6 +21,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Health check endpoint
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+
 # middleware - asking the backend to be flexible a little bit only with the specified localhost
 app.add_middleware(
     CORSMiddleware,

@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings
 from typing import Optional 
 
 class Settings(BaseSettings):
-    DATABASE_URL = ""
+    DATABASE_URL: str = "postgresql://postgres:password@localhost:5432/finance_coach_db"
 
     # Redis
     REDIS_URL:str="redis://localhost:6379"

@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 # declarative_base is used to define tables in python using a base class
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker,Session
-from .config import Settings
+from .config import settings
 import logging
 
 

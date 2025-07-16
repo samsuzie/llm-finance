@@ -243,5 +243,18 @@ class RiskAssessmentService:
         
         return recommendations 
     
+    def _suggest_asset_allocation(self,risk_profile:RiskProfile)->Dict[str,float]:
+        """Suggest asset allocation on risk profile"""
+        allocations={
+            "Very Conservative": {"stocks": 10, "bonds": 70, "cash": 20},
+            "Conservative": {"stocks": 25, "bonds": 65, "cash": 10},
+            "Moderate": {"stocks": 50, "bonds": 40, "cash": 10},
+            "Aggressive": {"stocks": 75, "bonds": 20, "cash": 5},
+            "Very Aggressive": {"stocks": 85, "bonds": 10, "cash": 5}
+        }
 
+        return allocations.get(risk_profile.risk_category,allocations["Moderate"])
+    
+
+    
 

@@ -1,4 +1,4 @@
-# frontend/src/App.jsx
+// # frontend/src/App.jsx
 import React, { useState } from 'react';
 import TransactionUpload from './components/TransactionUpload';
 import FinancialDashboard from './components/FinancialDashboard';

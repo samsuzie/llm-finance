@@ -119,9 +119,9 @@ Thumbs.db
 chroma_db/
 
 # ML Models
-models/
-*.pth
-*.pkl
+# models/
+# *.pth
+# *.pkl
 
 # React build
 frontend/build/

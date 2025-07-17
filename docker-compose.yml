@@ -3,6 +3,7 @@ version: '3.8'
 services:
   postgres:
     image: postgres:15
+    container_name: finance-postgres
     environment:
       POSTGRES_DB: finance_coach_db
       POSTGRES_USER: postgres
@@ -11,14 +12,17 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 30s
       timeout: 10s
       retries: 3
+    restart: unless-stopped
 
   redis:
     image: redis:7-alpine
+    container_name: finance-redis
     ports:
       - "6379:6379"
     volumes:
@@ -28,6 +32,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    restart: unless-stopped
 
   backend:
     build:

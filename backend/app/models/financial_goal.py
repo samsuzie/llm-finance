@@ -1,11 +1,22 @@
+<<<<<<< HEAD
 from sqlalchemy import Column, String, Float, Date, DateTime, ForeignKey, Text, Boolean
+=======
+from sqlalchemy import Column,String,Float,Date,DateTime,Text,ForeignKey,Boolean
+>>>>>>> 75f1347 (Updates)
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from ..core.database import Base
 
+<<<<<<< HEAD
 class FinancialGoal(Base):
     __tablename__ = "financial_goals"
     
+=======
+
+class FinancialGoal(Base):
+    __table_name__ = "financial_goals"
+
+>>>>>>> 75f1347 (Updates)
     id = Column(String, primary_key=True, index=True)
     user_id = Column(String, ForeignKey("users.id"), nullable=False)
     
@@ -27,4 +38,9 @@ class FinancialGoal(Base):
     completed_at = Column(DateTime(timezone=True), nullable=True)
     
     # Relationships
+<<<<<<< HEAD
     user = relationship("User", back_populates="financial_goals_rel")
+=======
+    user = relationship("User", back_populates="financial_goals_rel")
+    
+>>>>>>> 75f1347 (Updates)

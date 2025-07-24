@@ -1,31 +1,33 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
-const TransactionUpload=({onUploadSucess})=>{
-    const [file,setFile] = useState(nulll);
-    const[uploading,setUploading]=useState(false);
-    const[progress,setProgress] = useState(0);
+const TransactionUpload = ({ onUploadSuccess }) => {
+  const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
-    const handleFileChange =(event)=>{
-        setFile(event.target.files[0]);
-    }
-    const handleUpload = async () => {
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+  const handleUpload = async () => {
     if (!file) return;
     const formData = new FormData();
     formData.append('file', file);
     setUploading(true);
-    try{
-        const response = await axios.post('/api/transactions/upload',formData,{
-            headers:{
-                'Content-Type': 'multipart/form-data',
-            },
-            onUploadProgress:(ProgressEvent)=>{
-            const percentCompleted = Math.round(
-            (progressEvent.loaded * 100) / progressEvent.total);
-            setProgress(percentCompleted);
-            },
-        });
-        onUploadSuccess(response.data);
+    try {
+      const response = await axios.post('/api/transactions/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        onUploadProgress: (progressEvent) => {
+          const percentCompleted = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+          setProgress(percentCompleted);
+        },
+      });
+      onUploadSuccess(response.data);
       setFile(null);
       setProgress(0);
     } catch (error) {
@@ -34,9 +36,10 @@ const TransactionUpload=({onUploadSucess})=>{
     } finally {
       setUploading(false);
     }
-};
-return (
-     <div className="upload-container">
+  };
+
+  return (
+    <div className="upload-container">
       <h3>Upload Transaction History</h3>
       <div className="file-input-container">
         <input

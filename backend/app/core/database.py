@@ -5,6 +5,7 @@ from .config import settings
 import logging
 import time
 from sqlalchemy.exc import OperationalError
+from sqlalchemy import text
 
 
 logger = logging.getLogger(__name__)
@@ -26,7 +27,7 @@ def create_database_engine():
             )
             # Test connection
             with engine.connect() as conn:
-                conn.execute("SELECT 1")
+                conn.execute(text("SELECT 1"))
             logger.info("Database connection established successfully")
             return engine
         except OperationalError as e:

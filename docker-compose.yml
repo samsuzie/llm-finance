@@ -12,7 +12,6 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 30s
@@ -51,7 +50,6 @@ services:
     volumes:
       - ./backend:/app
       - chroma_data:/app/chroma_db
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
   frontend:
     build:
@@ -64,7 +62,7 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    command: npm start
+    # command: npm start
 
 volumes:
   postgres_data:
